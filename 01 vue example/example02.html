@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example2</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	
+	<h3>01</h3>
+	<div id="app" class="item">
+		<ol>
+			<todo-item></todo-item>
+		</ol>
+	</div>
+	<script>
+		Vue.component('todo-item', {
+			template: '<li>hello</li>'
+		})
+		var app = new Vue({
+			el: '#app'
+		});
+	</script>
+
+	<h3>02</h3>
+	<div id="app-2" class="item">
+		<ol>
+			<todo-item v-for="item in list" v-bind:todo="item"></todo-item>
+		</ol>
+	</div>
+	<script>
+		Vue.component('todo-item', {
+			props: ['todo'],
+			template: '<li>{{ todo.text }}</li>'
+		})
+		var app = new Vue({
+			el: '#app-2',
+			data: {
+				list: [
+					{text: "蔬菜"},
+					{text: "水果"},
+					{text: "牛奶"}
+				]
+			}
+		});
+	</script>
+
+	<h3>03</h3>
+	<div id="app-3" class="item">
+		<div v-bind:id="rawId | formatId"></div>
+	</div>
+	<script>
+		var app = new Vue({
+			el: '#app-3',
+			data: {
+				rawId: 0
+			},
+			filters: {
+				formatId: function(id) {
+					return "inner-"+id;
+				}
+			}
+		});
+	</script>
+
+	<!--计算属性-->
+	<h3>04</h3>
+	<div id="app-4" class="item reversebox">
+		<p>Origin message: "{{ message }}"</p>
+		<p>Computed reversed message: "{{ reverseMessage }}"</p>
+		<p>Time is: "{{ now }}"</p>
+	</div>
+	<script>
+		var vm = new Vue({
+			el: '.reversebox',
+			data: {
+				message: "Today is Friday!"
+			},
+			computed: {
+				reverseMessage: function() {
+					return this.message.split('').reverse().join('');
+				},
+				now: function() {
+					return Date.now();
+				}
+			}
+		});
+	</script>
+	
+	<!--watch-->
+	<h3>05</h3>
+	<div id="app-5" class="item">
+		<p>我的姓名: "{{ fullName }}"</p>
+	</div>
+	<script>
+		var app5 = new Vue({
+			el: '#app-5',
+			data: {
+				firstName: "项",
+				lastName: "圣",
+				fullName: "项圣"
+			},
+			watch: {
+				firstName: function(val) {
+					this.fullName = val + this.lastName;
+				},
+				lastName: function(val) {
+					this.fullName = this.firstName + val;
+				}
+			}
+		});
+	</script>
+
+	<!--computed-->
+	<h3>06</h3>
+	<div id="app-6" class="item">
+		<p>我的姓名: "{{ fullName }}"</p>
+	</div>
+	<script>
+		var app6 = new Vue({
+			el: '#app-6',
+			data: {
+				firstName: "项",
+				lastName: "圣"
+			},
+			computed: {
+				fullName: function(val) {
+					return this.firstName+this.lastName;
+				}
+			}
+		});
+	</script>
+
+	<!--computed setter-->
+	<h3>07</h3>
+	<div id="app-7" class="item">
+		<p>我的姓名: "{{ fullName }}"</p>
+	</div>
+	<script>
+		var app7 = new Vue({
+			el: '#app-7',
+			data: {
+				firstName: "项",
+				lastName: "圣"
+			},
+			computed: {
+				fullName: {
+					get: function() {
+						return this.firstName+' '+this.lastName;
+					},
+					set: function(newName) {
+						var name = newName.split(' ');
+						this.firstName = name[0];
+						this.lastName = name[name.length-1];
+					}
+				}
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

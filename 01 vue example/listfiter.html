@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>列表过滤</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>01 过滤</h3>
+	<div id="app1" class="item">
+		<input v-model="query">
+		<transition-group
+			tag = "ul"
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:leave="leave">
+
+			<li v-for="(item, index) in computedlist"
+				v-bind:key="item"
+				v-bind:data-index="index">
+				{{item}}
+			</li>
+		</transition-group>
+	</div>
+	<script type="text/javascript">
+		new Vue({
+			el: "#app1",
+			data: {
+				query: '',
+				list: ['Bruce Lee','Jackie Chan','Chuck Norris','Jet Li','Kung Fury']
+			},
+			computed: {
+				computedlist: function() {
+					var vm = this;
+					return this.list.filter(function(item){
+						return item.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1;
+					});
+				}
+			},
+			methods: {
+				beforeEnter: function(el) {
+					el.style.opacity = 0;
+					el.style.height = 0;
+				},
+				enter: function(el, done) {
+					var delay = el.dataset.index*100;
+					setTimeout(function(){
+						Velocity(el, {
+							opacity: 1, height: '1.6em'
+						}, {
+							complete: done
+						});
+					}, delay);
+				},
+				leave: function(el, done) {
+					var delay = el.dataset.index*100;
+					setTimeout(function(){
+						Velocity(el, {
+							opacity: 0, height: 0
+						}, {
+							complete: done
+						});
+					}, delay);
+				}
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义表单输入组件</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>01 简单的自定义表单输入组件</h3>
+	<div id="app" class="item">
+		<form-input v-model="price"></form-input>
+	</div>
+	<script>
+		Vue.component('form-input', {
+			template: `<span>
+					     $ 
+					     <input ref="input" 
+					            v-bind:value="value" 
+					            v-on:input="updateValue($event.target.value)">
+					   </span>`,
+			props: ['value'],
+			methods: {
+				updateValue: function(value) {
+					var valuestr = value.trim().slice(0, value.indexOf('.') + 3);
+
+					if(isNaN(Number(valuestr))) {
+						valuestr = valuestr.slice(0,valuestr.length-1) || '0';
+					}
+
+					if(valuestr !== value) {
+						this.$refs.input.value = valuestr;
+					}
+
+					this.$emit('input', Number(valuestr));
+				}
+			}
+		});
+
+		var app = new Vue({
+			el: "#app",
+			data: {
+				price: 0
+			}
+		});
+	</script>
+
+	<h3>02 货币过滤器</h3>
+	<div id="app2" class="item">
+		价格: <form-input v-model="price" v-on:input="totalPrice"></form-input><br>
+		运费: <form-input v-model="shipping" v-on:input="totalPrice"></form-input><br>
+		手续费: <form-input v-model="handling" v-on:input="totalPrice"></form-input><br>
+		折扣费: <form-input v-model="discount" v-on:input="totalPrice"></form-input><br>
+		<p>您要支付的价格是${{total}}。</p>
+	</div>
+	<script>
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				price: 0,
+				shipping: 0,
+				handling: 0,
+				discount: 0,
+				total: 0
+			},
+			methods: {
+				totalPrice: function() {
+					this.total = this.price + this.shipping + this.handling - this.discount;
+				}
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

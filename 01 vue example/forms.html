@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>forms</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	
+	<h3>01</h3>
+	<div id="app" class="item">
+		<label for="jack">
+			<input type="checkbox" id="jack" value="Jack" v-model="checknames">Jack
+		</label>
+		<label for="john">
+			<input type="checkbox" id="john" value="John" v-model="checknames">John
+		</label>
+		<label for="mike">
+			<input type="checkbox" id="mike" value="Mike" v-model="checknames">Mike
+		</label>
+		<br>
+		<span>Checked names: {{ checknames }}</span>
+	</div>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				checknames: []
+			}
+		});
+	</script>
+
+	<h3>02</h3>
+	<div id="app2" class="item">
+		<input type="checkbox" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">点击
+		<br>
+		<span>checked value: {{ toggle }}</span>
+	</div>
+	<script>
+		var app2 = new Vue({
+			el: '#app2',
+			data: {
+				toggle: '',
+				a: "选中我了",
+				b: "快选我"
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

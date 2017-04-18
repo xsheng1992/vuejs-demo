@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example3</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	
+	<h3>01</h3>
+	<div id="app" class="item">
+		<template v-if="loginType === 'username'">
+			<label>UserName:</label>
+			<input type="text" placeholder="Enter your username">
+		</template>
+		<template v-else>
+			<label>Email:</label>
+			<input type="text" placeholder="Enter your email address">
+		</template>
+		<br>
+		<button v-on:click="toggleClick">点击切换</button>
+	</div>
+	<script>
+		//此时切换loginType后输入框内的值是共用的
+		var app = new Vue({
+			el: '#app',
+			data: {
+				loginType: 'username'
+			},
+			methods: {
+				toggleClick: function() {
+					this.loginType = this.loginType === 'username' ? 'email' : 'username';
+				}
+			}
+		});
+	</script>
+
+	<h3>02</h3>
+	<div id="app-2" class="item">
+		<template v-if="loginType === 'username'">
+			<label>UserName:</label>
+			<input type="text" placeholder="Enter your username" key="username-input">
+		</template>
+		<template v-else>
+			<label>Email:</label>
+			<input type="text" placeholder="Enter your email address" key="email-input">
+		</template>
+		<br>
+		<button v-on:click="toggleClick">点击切换</button>
+	</div>
+	<script>
+		//此时切换loginType后输入框内的值不是共用的，因为加了key，每次会重新渲染
+		var app2 = new Vue({
+			el: '#app-2',
+			data: {
+				loginType: 'username'
+			},
+			methods: {
+				toggleClick: function() {
+					this.loginType = this.loginType === 'username' ? 'email' : 'username';
+				}
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

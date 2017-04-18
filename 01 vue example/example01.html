@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example1</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>01</h3>
+	<div id="app" class="item">
+		{{ message }}
+	</div>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'Hello Vue!'
+			}
+		});
+		//可修改app.message的值替换内容
+	</script>
+
+	<h3>02</h3>
+	<div id="app-2" class="item" v-bind:title="message">
+		鼠标悬停几秒钟查看此处动态绑定的提示信息！
+	</div>
+	<script>
+		var app2 = new Vue({
+			el: '#app-2',
+			data: {
+				message: '页面加载于：' + new Date()
+			}
+		});
+	</script>
+
+	<h3>03</h3>
+	<div id="app-3" class="item" v-if="ppp">
+		现在你看到我了
+	</div>
+	<script>
+		//修改app3.seen来显示或隐藏内容
+		var app3 = new Vue({
+			el: '#app-3',
+			data: {
+				ppp: true
+			}
+		});
+	</script>
+
+	<h3>04</h3>
+	<div id="app-4" class="item">
+		<ol>
+			<li  v-for="todo in list">
+				{{ todo.text }}
+			</li>
+		</ol>
+	</div>
+	<script>
+		//通过app4.list.push({text: 'newitem'})可以增加列表条目
+		var app4 = new Vue({
+			el: '#app-4',
+			data: {
+				/*
+				list: ['aaa', 'bbb', 'ccc']
+				*/
+				list: [
+					{ text: "aaa" },
+					{ text: "bbb" },
+					{ text: "ccc" }
+				]
+			}
+		});
+	</script>
+
+	<h3>05</h3>
+	<div id="app-5" class="item">
+		<p>{{ message }}</p>
+		<button v-on:click="reverseMessage">翻转字符串</button>
+	</div>
+	<script>
+		var app5 = new Vue({
+			el: '#app-5',
+			data: {
+				message: "OnePublic"
+			},
+			methods: {
+				reverseMessage: function() {
+					this.message = this.message.split('').reverse().join('');
+				}
+			}
+		});
+	</script>
+
+	<h3>06</h3>
+	<div id="app-6" class="item">
+		<p>{{ message }}</p>
+		<input type="text" v-model="message">
+	</div>
+	<script>
+		var app6 = new Vue({
+			el: '#app-6',
+			data: {
+				message: "OnePublic"
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画过渡效果</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>01 通过render来根据level创建标题</h3>
+	<div id="group1" class="item">
+		<htemplate v-bind:level="1">这是一级标题</htemplate>
+		<htemplate v-bind:level="2">这是二级标题</htemplate>
+		<htemplate v-bind:level="3">这是三级标题</htemplate>
+		<htemplate v-bind:level="4">这是四级标题</htemplate>
+		<htemplate v-bind:level="5">这是五级标题</htemplate>
+		<htemplate v-bind:level="6">这是六级标题</htemplate>
+	</div>
+	<script type="text/javascript">
+		Vue.component('htemplate', {
+			props: {
+				level: {
+					type: Number,
+					required: true
+				}
+			},
+			render: function(creatElement) {
+				return creatElement(
+					'h'+this.level,
+					this.$slots.default
+				);
+			}
+		});
+		new Vue({el:"#group1"});
+	</script>
+
+</div>
+</body>
+</html>

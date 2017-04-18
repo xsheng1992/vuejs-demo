@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义指令</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>01 自定义指令-自动focus</h3>
+	<div id="app1" class="item">
+		<input v-focus>
+	</div>
+	<script type="text/javascript">
+		/*
+		Vue.directive('focus', {
+			inserted: function(el) {
+				el.focus();
+			}
+		});*/
+
+		new Vue({
+			el:'#app1',
+			directives: {
+				focus: {
+					inserted: function(el) {
+						el.focus();
+					}
+				}
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

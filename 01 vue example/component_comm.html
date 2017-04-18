@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>非父子组件通信</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="colorbox">
+		<select ref="select" v-on:change="selectColor">
+			<option v-for="item of colorlist" v-bind:value="item">{{item}}</option>
+		</select>
+	</div>
+	
+	<div class="cubebox">
+		<div class="cube" v-bind:style="[cubestyle,bgstyle]"></div>
+	</div>
+
+	<script>
+	var bus = new Vue();
+	//colorbox
+	var colorbox = new Vue({
+		el: ".colorbox",
+		data: {
+			colorlist: ['red','blue','yellow']
+		},
+		methods: {
+			selectColor: function(ele) {
+				bus.$emit('selectColor', ele.target.value);
+			}
+		}
+	});
+	//cubebox
+	var cubebox = new Vue({
+		el: ".cubebox",
+		data: {
+			cubestyle: {
+				width: '40px',
+				height: '40px',
+				border: '1px solid #ddd',
+				marginTop: '20px'
+			},
+			bgstyle: {
+				backgroundColor: 'white'
+			}
+		}
+	});
+
+	bus.$on('selectColor', function(color){
+		cubebox.bgstyle.backgroundColor = color;
+	});
+	</script>
+
+</div>
+</body>
+</html>

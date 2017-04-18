@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	<h3>01 counter</h3>
+	<div id="app" class="item">
+		<simple-counter></simple-counter>
+		<simple-counter></simple-counter>
+		<simple-counter></simple-counter>
+	</div>
+	<script>
+		var counter = {
+			template: '<button v-on:click=" count+=1 ">{{ count }}</button>',
+			data: function() {
+				return { count: 0 };
+			}
+		};
+
+		var app = new Vue({
+			el: "#app",
+			components: {
+				'simple-counter': counter
+			}
+		});
+	</script>
+
+	<h3>02 props</h3>
+	<div id="app2" class="item">
+		<input v-model="mymessage">
+		<br>
+		<my-component v-bind:my-message="mymessage"></my-component>
+	</div>
+	<script>
+
+		var app2 = new Vue({
+			el: "#app2",
+			data: {
+				mymessage: 'parent message'
+			},
+			components: {
+				'my-component': {
+					props: ['myMessage'],
+					template: '<p>{{ myMessage }}</p>'
+				}
+			}
+		});
+	</script>
+
+	<h3>03 props验证</h3>
+	<div id="app3" class="item">
+		<p>定义的prop的值必须是大于10小于100的数字</p>
+		<my-component v-bind:my-define="12"></my-component>
+	</div>
+	<script>
+
+		var app3 = new Vue({
+			el: "#app3",
+			components: {
+				'my-component': {
+					props: {
+						myDefine: {
+							validator: function(value) {
+								return (value<100 && value>10);
+							}
+						}
+					},
+					template: '<p>你输入的prop值是{{ myDefine }}</p>'
+				}
+			}
+		});
+	</script>
+
+	<h3>04 v-on绑定</h3>
+	<div id="app4" class="item">
+		<p>您总共点击了{{totalCount}}次</p>
+		<button-click v-on:clickthis="clickButton"></button-click>
+		<button-click v-on:clickthis="clickButton"></button-click>
+	</div>
+	<script>
+
+		var app4 = new Vue({
+			el: "#app4",
+			data: {
+				totalCount: 0
+			},
+			methods: {
+				clickButton: function() {
+					console.log("aaa");
+					this.totalCount+=1;
+				}
+			},
+			components: {
+				'button-click': {
+					template: '<button v-on:click="clickthis">{{count}}</button>',
+					data: function() {
+						return {
+							count: 0
+						};
+					},
+					methods: {
+						clickthis: function() {
+							this.count += 1;
+							this.$emit('clickthis');
+						}
+					}
+				}
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

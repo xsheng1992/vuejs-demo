@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example3</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+	
+	<h3>todo-list</h3>
+	<div id="todo-list" class="item">
+		<input type="text" placeholder="添加新的事项" v-on:click="addList">
+		<ul>
+			<li v-for="item in lists">
+				{{item}}
+			</li>
+		</ul>
+	</div>
+	<script>
+		var app = new Vue({
+			el: '#todo-list',
+			data: {
+				lists: [
+					'起床',
+					'刷牙',
+					'洗脸'
+				]
+			}
+		});
+	</script>
+
+</div>
+</body>
+</html>

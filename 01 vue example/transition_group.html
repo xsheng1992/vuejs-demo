@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画过渡效果</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="//cdn.bootcss.com/velocity/1.5.0/velocity.min.js"></script>
+	<script src="//cdn.bootcss.com/velocity/1.5.0/velocity.ui.min.js"></script>
+	<style type="text/css">
+		.item {
+			height: 60px;
+			margin-bottom: 30px;
+		}
+
+		.list-item {
+			display: inline-block;
+			margin-right: 10px;
+		}
+		.fade-enter-active, .fade-leave-active {
+			transition: all .5s;
+		}
+		.fade-enter, .fade-leave-active {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+
+		.list-complete-item {
+			display: inline-block;
+			margin-right: 10px;
+			transition: all 1s;
+		}
+		.fade-complete-enter, .fade-complete-leave-active {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		.fade-complete-leave-active {
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h3>01 增加或删除时的元素有过度效果</h3>
+	<div id="group1" class="item">
+		<button v-on:click="add">Add</button>
+		<button v-on:click="remove">Remove</button>
+		<br>
+		<transition-group name="fade" tag="p">
+			<span v-for="item of lists" v-bind:key="item" class="list-item">{{item}}</span>
+		</transition-group>
+	</div>
+	<script type="text/javascript">
+		var g1 = new Vue({
+			el: "#group1",
+			data: {
+				lists: [1,2,3,4,5,6,7,8,9],
+				count: 10
+			},
+			methods: {
+				add: function() {
+					this.lists.splice(this.random(), 0, this.count++)
+				},
+				remove: function() {
+					this.lists.splice(this.random(), 1);
+				},
+				random: function() {
+					return Math.floor(Math.random()*this.lists.length);
+				}
+			}
+		});
+	</script>
+	
+	<h3>02 增加或删除时横排的元素也有效果</h3>
+	<div id="group2" class="item">
+		<button v-on:click="shuffle">Shuffle</button>
+		<button v-on:click="add">Add</button>
+		<button v-on:click="remove">Remove</button>
+		<br>
+		<transition-group name="fade-complete" tag="p">
+			<span v-for="item of lists" v-bind:key="item" class="list-complete-item">{{item}}</span>
+		</transition-group>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+	<script type="text/javascript">
+		var g2 = new Vue({
+			el: "#group2",
+			data: {
+				lists: [1,2,3,4,5,6,7,8,9],
+				count: 10
+			},
+			methods: {
+				add: function() {
+					this.lists.splice(this.random(), 0, this.count++);
+				},
+				remove: function() {
+					this.lists.splice(this.random(), 1);
+				},
+				random: function() {
+					return Math.floor(Math.random()*this.lists.length);
+				},
+				shuffle: function() {
+					this.lists = _.shuffle(this.lists);
+				}
+			}
+		});
+	</script>
+
+
+	<style type="text/css">
+		#group3 {
+			height: 300px;
+		}
+		.sudoku-container {
+			width: 198px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+		.cell {
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			border: 1px solid #666;
+			display: inline-block;
+			font-size: 12px;
+			margin-right: -1px;
+			margin-bottom: -1px;
+
+			transition: transform .8s;
+		}
+		.cell:nth-child(3n) {
+			margin-right: 0;
+		}
+		.cell:nth-child(27n) {
+			margin-bottom: 0;
+		}
+	</style>
+	<h3>03 多维数组动画的过渡效果</h3>
+	<div id="group3" class="item">
+		<button v-on:click="shuffle">Shuffle</button>
+		<transition-group name="cell" tag="div" class="sudoku-container">
+			<div v-for="item of lists" v-bind:key="item.id" class="cell">{{item.number}}</div>
+		</transition-group>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.14.1/lodash.min.js"></script>
+	<script type="text/javascript">
+		var g3 = new Vue({
+			el: "#group3",
+			data: {
+				lists: Array.apply(null, {length:81})
+						.map(function(e,index){
+							return {
+								id: index,
+								number: index%9+1
+							}
+						})
+			},
+			methods: {
+				shuffle: function() {
+					this.lists = _.shuffle(this.lists);
+				}
+			}
+		});
+	</script>
+</div>
+</body>
+</html>

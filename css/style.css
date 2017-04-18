@@ -1,0 +1,14 @@
+.container {
+	width: 800px;
+	padding: 30px 15px;
+	margin: 0 auto;
+}
+.item {
+	padding: 10px 35px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 16px;
+	color: #333;
+	line-height: 28px;
+	overflow: hidden;
+}

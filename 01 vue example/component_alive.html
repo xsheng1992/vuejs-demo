@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件-动态组件</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<style type="text/css">
+		.fade-enter-active, .fade-leave-active {
+			transition: all 1s;
+		}
+		.fade-enter, .fade-leave {
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h3>01 </h3>
+	<div id="fa" class="item">
+		<p>接下去要去哪里？</p>
+		<button v-on:click="changePlace('home')">回家</button>
+		<button v-on:click="changePlace('school')">去学校</button>
+		<button v-on:click="changePlace('park')">去公园</button>
+		
+		<keep-alive>
+			<transition name="fade">
+				<component v-bind:is="gowhere"></component>
+			</transition>
+		</keep-alive>
+	</div>
+	<script>
+		var homecpt = {
+			template: `<p>欢迎回家！</p>`
+		};
+		var schoolcpt = {
+			template: `<p>欢迎来到学校！</p>`
+		};
+		var parkcpt = {
+			template: `<p>欢迎来到公园！</p>`
+		};
+
+		var fa = new Vue({
+			el: "#fa",
+			data: {
+				gowhere: homecpt
+			},
+			methods: {
+				changePlace: function(val) {
+					switch(val) {
+						case 'school': 
+							this.gowhere = schoolcpt;
+							break;
+						case 'park':
+							this.gowhere = parkcpt;
+							break;
+						default:
+							this.gowhere = homecpt;
+					}
+				}
+			}
+		});
+	</script>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动画过渡效果</title>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css">
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="//cdn.bootcss.com/velocity/1.5.0/velocity.min.js"></script>
+	<script src="//cdn.bootcss.com/velocity/1.5.0/velocity.ui.min.js"></script>
+	<style type="text/css">
+		/*fade*/
+		.fade-enter-active, .fade-leave-active {
+		  transition: opacity .5s
+		}
+		.fade-enter, .fade-leave-active {
+		  opacity: 0
+		}
+
+		/*slidefade*/
+		.slidefade-enter-active {
+			transition: all .3s;
+		}
+		.slidefade-leave-active {
+			transition: all .8s;
+		}
+		.slidefade-enter, .slidefade-leave-active {
+			opacity: 0;
+			transform: translate(10px);
+		}
+
+		/*bounce*/
+		.bounce-enter-active {
+			-webkit-animation: bounce-in .5s;
+		}
+		.bounce-leave-active {
+			-webkit-animation: bounce-out .5s;
+		}
+		@-webkit-keyframes bounce-in{
+			0% {
+				transform: scale(0);
+				opacity: 0;
+			}
+			50% {
+				transform: scale(1.5);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+		@-webkit-keyframes bounce-out{
+			0% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(1.5);
+			}
+			100% {
+				transform: scale(0);
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h3>01 fade效果</h3>
+	<div id="demo1" class="item">
+		<button v-on:click="show = !show">toggle</button>
+		<transition name="fade">
+			<p v-if="show">Hello!</p>
+		</transition>
+	</div>
+	<script>
+	var d1 = new Vue({
+		el: "#demo1",
+		data: {
+			show: true
+		}
+	});
+	</script>
+
+	<h3>02 slide-fade效果</h3>
+	<div id="demo2" class="item">
+		<button v-on:click="show = !show">toggle</button>
+		<transition name="slidefade">
+			<p v-if="show">Hello!</p>
+		</transition>
+	</div>
+	<script>
+	var d2 = new Vue({
+		el: "#demo2",
+		data: {
+			show: true
+		}
+	});
+	</script>
+
+	<h3>03 css动画</h3>
+	<div id="demo3" class="item">
+		<button v-on:click="show = !show">toggle</button>
+		<transition name="bounce">
+			<p v-if="show">Hello!</p>
+		</transition>
+	</div>
+	<script>
+	var d3 = new Vue({
+		el: "#demo3",
+		data: {
+			show: true
+		}
+	});
+	</script>
+
+	<h3>04 自定义过渡类名</h3>
+	<div id="demo4" class="item">
+		<button v-on:click="show = !show">toggle</button>
+		<transition name="bounce-custom"
+					enter-active-class="animated lightSpeedIn"
+					leave-active-class="animated hinge">
+			<p v-if="show">Hello!</p>
+		</transition>
+	</div>
+	<script>
+	var d4 = new Vue({
+		el: "#demo4",
+		data: {
+			show: true
+		}
+	});
+	</script>
+
+	<h3>05 JavaScript 钩子</h3>
+	<div id="demo5" class="item">
+		<button v-on:click="show = !show">toggle</button>
+		<transition 
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:leave="leave"
+			v-bind:css="false">
+			<p v-if="show">Hello!</p>
+		</transition>
+	</div>
+	<script>
+	var d5 = new Vue({
+		el: "#demo5",
+		data: {
+			show: true
+		},
+		methods: {
+			beforeEnter: function(el) {
+			},
+			enter: function(el, done) {
+				Velocity(el, "transition.expandIn", { duration: 650 });
+				Velocity(el, "callout.swing", { duration: 650 , complete: done});
+			},
+			leave: function(el,done) {
+				Velocity(el, "transition.flipYOut", { duration: 650 , complete: done});
+			}
+		}
+	});
+	</script>
+	
+
+	<style type="text/css">
+		#demo6 {
+			position: relative;
+			height: 24px;
+		}
+		#demo6 button {
+			position: absolute;
+			left: 35px;
+		}
+		.slideOut-enter-active, .slideOut-leave-active {
+			transition: all .5s;
+		}
+		.slideOut-enter {
+			transform: translate(20px);
+			opacity: 0;
+		}
+		.slideOut-leave {
+			transform: translate(0);
+			opacity: 1;
+		}
+		.slideOut-leave-active {
+			transform: translate(-33px);
+			opacity: 0;
+		}
+	</style>
+	<h3>06 过渡模式</h3>
+	<div id="demo6" class="item">
+		<transition name="slideOut" mode="out-in">
+			<button v-bind:key="on" v-on:click="on = !on">
+				{{on?'Off':'On'}}
+			</button>
+		</transition>
+	</div>
+	<script>
+	var d6 = new Vue({
+		el: "#demo6",
+		data: {
+			on: true
+		}
+	});
+	</script>
+	
+</div>
+</body>
+</html>
