@@ -20,7 +20,7 @@
 
 <script>
 //import Velocity from 'velocity-animate'
-import Velocity from 'velocity'
+import Velocity from 'velocity-animate'
 
 var hasString = function(origin, string) {
   return origin.toLowerCase().indexOf(string.toLowerCase()) !== -1;

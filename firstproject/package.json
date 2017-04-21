@@ -18,7 +18,6 @@
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
     "file-loader": "^0.9.0",
-    "velocity": "^0.7.2",
     "velocity-animate": "^1.5.0",
     "vue-loader": "^11.1.4",
     "vue-template-compiler": "^2.2.1",
