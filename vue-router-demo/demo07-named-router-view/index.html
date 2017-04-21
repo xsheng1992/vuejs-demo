@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>命名视图</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+      .view {
+        display: inline-block;
+        width: 200px;
+        height: 150px;
+        border: 1px solid rgb(200,200,200);
+        border-radius: 10px;
+        background-color: rgba(200,200,200,.5);
+        padding: 20px;
+      }
+      .view.two {
+        border-color: rgb(255,131,64);
+        background-color: rgba(255,131,64,.5);
+      }
+      .view.three {
+        border-color: rgb(64,185,255);
+        background-color: rgba(64,185,255,.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>Hello App!</p>
+      <p>
+        <router-link to="/">/</router-link>
+        <router-link to="/other">/other</router-link>
+      </p>
+      <!--路由出口-->
+      <router-view class="view one"></router-view>
+      <router-view class="view two" name="a"></router-view>
+      <router-view class="view three" name="b"></router-view>
+    </div>
+
+    <script>
+      //1.定义路由组件，可以从其他文件import
+      const foo = {template: '<div><p>foo panel</p></div>'}
+      const bar = {template: '<div><p>bar panel</p></div>'}
+      const baz = {template: '<div><p>baz panel</p></div>'}
+
+      //2.定义路由
+      //3.创建router实例，并传入routes配置
+      const router = new VueRouter({
+        routes : [
+          {
+            path: '/', 
+            components: {
+              default: foo,
+              a: bar,
+              b: baz
+            }
+          },
+          {
+            path: '/other', 
+            components: {
+              default: baz,
+              a: foo,
+              b: bar
+            }
+          }
+        ]
+      });
+
+      //4.启动路由
+      var app = new Vue({
+        router
+      }).$mount("#app");
+    </script>
+  </body>
+</html>
