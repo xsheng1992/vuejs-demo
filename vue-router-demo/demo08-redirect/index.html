@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>重定向 和 别名</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Hello App!</p>
+      <p>
+        <router-link to="/foo">/foo</router-link>
+        <router-link to="/other">/other</router-link>
+        <router-link to="/about">/about</router-link>
+      </p>
+      <!--路由出口-->
+      <router-view></router-view>
+    </div>
+
+    <script>
+      //1.定义路由组件，可以从其他文件import
+      const foo = {template: '<div><p>foo panel</p></div>'};
+
+      //2.定义路由
+      //3.创建router实例，并传入routes配置
+      const router = new VueRouter({
+        routes : [
+          {
+            path: '/foo', 
+            component: foo,
+            alias: '/about' //别名
+          },
+          {
+            path: '/other', 
+            redirect: '/foo'
+          }
+        ]
+      });
+
+      //4.启动路由
+      var app = new Vue({
+        router
+      }).$mount("#app");
+    </script>
+  </body>
+</html>
