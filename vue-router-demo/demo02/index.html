@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>vue-router-demo-02</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p>Hello App!</p>
+      <p>
+        <!--使用router-link导航，
+            router-link默认会渲染成<a>标签
+            通过to属性来指定链接-->
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+      </p>
+      <!--路由出口-->
+      <router-view></router-view>
+    </div>
+
+    <script>
+      //1.定义路由组件，可以从其他文件import
+      const foo = { template: '<p>foo</p>' };
+      const bar = { template: '<p>bar</p>' };
+
+      //2.定义路由
+      //每个组件都应该映射一个路由，下面的component可以是通过Vue.extend()创建的组件构造器或者是一个组件配置对象
+      const routes = [
+        {path: '/foo', component: foo},
+        {path: '/bar', component: bar}
+      ];
+
+      //3.创建router实例，并传入routes配置
+      const router = new VueRouter({
+        routes
+      });
+
+      //4.启动路由
+      var app = new Vue({
+        router
+      }).$mount("#app");
+    </script>
+  </body>
+</html>
