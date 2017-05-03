@@ -1,0 +1,234 @@
+.w980 {
+  width: 980px;
+  margin: 0 auto;
+}
+.downwrap {
+  padding-top: 60px; 
+}
+.dn-btn {
+  outline: none;
+  display: block;
+  margin: 0 auto;
+  width: 78px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #12b7f5;
+  line-height: 30px;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+.dn-btn:hover {
+  background-color: #22c0fc;
+}
+
+.downbox1 {
+  margin-bottom: 40px;
+}
+.bigbox {
+  width: 326px;
+  border: 1px solid #e7e7e7;
+  float: left;
+  margin-right: -1px;
+}
+.bigbox>img {
+  width: 325px;
+  height: 175px;
+}
+.bigbox h2 {
+  text-align: center;
+  line-height: 70px;
+  font-size: 14px;
+  font-weight: normal;
+}
+.bigbox h2>a {
+  color: #333;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+.bigbox h2>.small {
+  color: #333;
+}
+.bigbox h2>.small.active {
+  color: #979797;
+  cursor: pointer;
+}
+.bigbox.mobile h2>span {
+  cursor: pointer;
+}
+.bigbox.mobile h2>span:after {
+  content: "";
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background: url(../images/newicon.png) no-repeat;
+  margin-left: 3px;
+  position: relative;
+  top: -6px;
+}
+.bigbox .dtext {
+  margin: 0 15px 0;
+  height: 140px;
+}
+.bigbox .dtext>p {
+  font-size: 14px;
+  color: #666;
+  line-height: 26px;
+}
+.bigbox .dbtns {
+  height: 68px;
+  text-align: center;
+  font-size: 0;
+}
+.bigbox .dbtns .icon-pc {
+  display: inline-block;
+  width: 15px;
+  height: 14px;
+  background: url(../images/btn_icon_pc.png) no-repeat;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.bigbox .dbtns .icon-and {
+  display: inline-block;
+  width: 15px;
+  height: 20px;
+  background: url(../images/btn_icon_and.png) no-repeat;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.bigbox .dbtns .icon-ios {
+  display: inline-block;
+  width: 14px;
+  height: 20px;
+  background: url(../images/btn_icon_ios.png) no-repeat;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.bigbox .dn-btn {
+  width: 126px;
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 8px;
+  position: relative;
+  z-index: 10;
+  vertical-align: middle;
+}
+.bigbox .dbtns .date {
+  color: #848484;
+  font-size: 12px;
+  height: 20px;
+}
+.bigbox .lbtn, .bigbox .rbtn {
+  width: 142px;
+  display: inline-block;
+  position: relative;
+}
+.bigbox .dropdown {
+  width: 126px;
+  border-radius: 15px;
+  background-color: #12b7f5;
+  position: absolute;
+  top: 20px;
+  left: 8px;
+  z-index: 5;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  list-style: none;
+  overflow: hidden;
+  height: 128px;
+}
+.bigbox .dropdown>li {
+  height: 20px;
+}
+.bigbox .dropdown>li.its {
+  height: 26px;
+  line-height: 26px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+.bigbox .dropdown>li.its:hover {
+  background-color: #22c0fc;
+}
+
+.downbox2 h1 {
+  font-weight: normal;
+  font-size: 18px;
+  height: 38px;
+}
+.downbox2 .otherlist {
+  list-style: none;
+  width: 100%;
+  font-size: 0;
+  border-top: 1px solid #e7e7e7;
+  border-left: 1px solid #e7e7e7;
+  margin-bottom: 40px;
+}
+.downbox2 .otherlist>li {
+  display: inline-block;
+  width: 50%;
+  border-right: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+  height: 99px;
+  padding: 30px 0 0 98px;
+  position: relative;
+}
+.downbox2 .otherlist>li>h3 {
+  font-size: 16px;
+  line-height: 22px;
+}
+.downbox2 .otherlist>li>h3>span {
+  font-size: 12px;
+  font-weight: normal;
+  margin-left: 10px;
+  color: #666;
+}
+.downbox2 .otherlist>li>p {
+  font-size: 14px;
+  color: #666;
+}
+.downbox2 .otherlist>li>.dn-btn {
+  font-size: 14px;
+  position: absolute;
+  top: 34px;
+  right: 30px;
+}
+
+.downbox3>h1 {
+  font-weight: normal;
+  font-size: 18px;
+  height: 38px;
+}
+.downbox3 .moredown {
+  list-style: none;
+  padding-top: 30px;
+  border-top: 1px solid #e7e7e7;
+  margin-bottom: 30px;
+}
+.downbox3 .moredown>li {
+  display: inline-block;
+  width: 25%;
+  font-size: 0;
+  margin-bottom: 25px;
+}
+.downbox3 .moredown>li .proname,
+.downbox3 .moredown>li .prodown {
+  display: inline-block;
+  width: 70%;
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+  line-height: 30px;
+}
+.downbox3 .moredown>li .prodown {
+  width: 30%;
+}
+.downbox3 .moredown>li>a:hover {
+  color: #787878;
+}
+.downbox3 .moredown>li p {
+  font-size: 12px;
+  color: #787878;
+}

@@ -1,0 +1,116 @@
+.trends {
+  padding: 60px 0;
+}
+.trends .newslist {
+  width: 100%;
+  list-style: none;
+}
+.trends .newslist>li {
+  height: 149px;
+  border: 1px solid #eee;
+}
+.trends .newslist>li+li {
+  border-top: none;
+}
+.trends .newslist>li>a {
+  display: block;
+  height: 100%;
+  padding: 22px 30px;
+  text-decoration: none;
+  color: #666;
+}
+.trends .newslist>li>a .topinfo {
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+}
+.trends .newslist>li>a h3 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+.trends .newslist>li>a .text {
+  font-size: 14px;
+  padding: 0 60px;
+  text-indent: 2em;
+  line-height: 24px;
+}
+.trends .newslist>li:hover {
+  background-color: #f7f7f7;
+}
+.trends .newslist>li:hover>a h3 {
+  color: #12b7f5;
+}
+.trends .newslist>li:hover>a .text {
+  color: #333;
+}
+
+
+.w981 {
+  width: 981px;
+  margin: 0 auto;
+}
+.allalbum {
+  padding: 40px 0 70px;
+}
+.allalbum h1 {
+  font-size: 18px;
+  font-weight: normal;
+  height: 40px;
+}
+.allalbum .albs {
+  list-style: none;
+  font-size: 0;
+}
+.allalbum .albs>li {
+  display: inline-block;
+  width: 327px;
+  height: 270px;
+  position: relative;
+}
+.allalbum .albs>li>a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(47, 187, 239, .9);
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  padding-top: 80px;
+  opacity: 0;
+
+  -webkit-transition: opacity .5s ease;
+     -moz-transition: opacity .5s ease;
+          transition: opacity .5s ease;
+}
+.allalbum .albs>li>a:hover {
+  opacity: 1;
+}
+.allalbum .albs>li>a h3 {
+  font-size: 28px;
+  font-weight: normal;
+}
+.allalbum .albs>li>a p {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.allalbum .albs>li>a .goto {
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+}
+.allalbum .albs>li>a .goto .icon-zt,
+.allalbum .albs>li>a .goto .icon-vd {
+  display: inline-block;
+  width: 23px;
+  height: 23px;
+  background: url(../images/album/sled.png) no-repeat;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+.allalbum .albs>li>a .goto .icon-vd {
+  background: url(../images/album/vp.png) no-repeat;
+}
