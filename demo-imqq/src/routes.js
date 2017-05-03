@@ -10,6 +10,7 @@ const Album = album;
 const Home = {template: "<router-view></router-view>"};
 
 export default {
+  mode: 'history',
   routes: [
     {path: '/', component: Index},
     {path: '/download', component: Download},
@@ -22,5 +23,8 @@ export default {
         {path: 'news', component: News}
       ]
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 }
