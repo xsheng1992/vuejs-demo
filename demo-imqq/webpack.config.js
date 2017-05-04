@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve('./vuejs-demo/demo-imqq', './dist'),
-    publicPath: './dist',
+    publicPath: './vuejs-demo/demo-imqq/dist',
     filename: 'build.js'
   },
   module: {
