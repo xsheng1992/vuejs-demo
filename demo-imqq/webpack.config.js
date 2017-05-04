@@ -4,8 +4,8 @@ var webpack = require('webpack')
 module.exports = {
   entry: './src/main.js',
   output: {
-    path: path.resolve(__dirname, '/vuejs-demo/demo-imqq/dist'),
-    publicPath: '/dists/',
+    path: path.resolve(__dirname, './vuejs-demo/demo-imqq/dist'),
+    publicPath: './vuejs-demo/demo-imqq/dist/',
     filename: 'build.js'
   },
   module: {
