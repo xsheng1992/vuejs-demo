@@ -10,7 +10,6 @@ const Album = album;
 const Home = {template: "<router-view></router-view>"};
 
 export default {
-  mode: 'history',
   routes: [
     {path: '/', component: Index},
     {path: '/download', component: Download},

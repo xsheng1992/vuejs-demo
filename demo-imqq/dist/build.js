@@ -489,7 +489,6 @@ const Album = __WEBPACK_IMPORTED_MODULE_3__pages_album_vue___default.a;
 const Home = { template: "<router-view></router-view>" };
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  mode: 'history',
   routes: [{ path: '/', component: Index }, { path: '/download', component: Download }, {
     path: '/trends',
     component: Home,
