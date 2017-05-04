@@ -494,7 +494,7 @@ const Home = { template: "<router-view></router-view>" };
     component: Home,
     children: [{ path: '', redirect: 'album' }, { path: 'album', component: Album }, { path: 'news', component: News }]
   }],
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior: function (to, from, savedPosition) {
     return { x: 0, y: 0 };
   }
 });

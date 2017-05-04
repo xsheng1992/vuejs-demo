@@ -23,7 +23,7 @@ export default {
       ]
     }
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior: function(to, from, savedPosition) {
     return { x: 0, y: 0 }
   }
 }
