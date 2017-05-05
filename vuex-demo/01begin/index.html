@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>vue begin</title>
+    <script src="//cdn.bootcss.com/vue/2.3.2/vue.js"></script>
+    <script src="//cdn.bootcss.com/vuex/2.3.1/vuex.js"></script>
+  </head>
+  <body>
+    <div id="app">
+    	<p>点击次数：{{count}}</p>
+    	<button @click="increment">点我</button>
+    </div>
+    <script>
+    	const store = new Vuex.Store({
+    		state: {
+    			count: 0
+    		},
+    		mutations: {
+    			increment(state) {
+    				state.count++;
+    			}
+    		}
+    	});
+
+    	new Vue({
+    		el: "#app",
+    		computed: {
+    			count() {
+    				return store.state.count;
+    			}
+    		},
+    		methods: {
+    			increment() {
+    				store.commit('increment');
+    			}
+    		}
+    	});
+
+    </script>
+  </body>
+</html>
