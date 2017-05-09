@@ -22,9 +22,10 @@ export default {
         {path: 'album', component: Album},
         {path: 'news', component: News}
       ]
-    }
+    },
+    {path: '*', redirect: '/'}
   ],
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 }
   }
 }

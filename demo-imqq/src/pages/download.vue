@@ -122,7 +122,7 @@
 </template>
 
 <script>
-  import main from '../layout/main.vue';
+  //import main from '../layout/main.vue';
   import carousel from '../components/carousel.vue';
 
   const r_mac = require('../assets/images/mac_icon.png');
@@ -231,7 +231,7 @@
       }
     },
     components: {
-      'main-layout': main,
+      //'main-layout': main,
       'carousel-box': carousel
     },
     methods: {

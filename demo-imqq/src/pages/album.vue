@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import main from '../layout/main.vue';
+  //import main from '../layout/main.vue';
   import carousel from '../components/carousel.vue';
 
   export default {
@@ -84,7 +84,7 @@
       }
     },
     components: {
-      'main-layout': main,
+      //'main-layout': main,
       'carousel-box': carousel
     }
   }
